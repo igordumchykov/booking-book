@@ -21,5 +21,10 @@ pipeline {
                 }
             }
         }
+        stage('Push') {
+            steps {
+                sh 'mvn fabric8:push'
+            }
+        }
     }
 }
