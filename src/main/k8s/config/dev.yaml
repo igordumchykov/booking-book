@@ -1,0 +1,43 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: book-service
+  namespace: dev
+data:
+  application.yaml: |-
+
+    server:
+      port: 8060
+
+    spring:
+      application:
+        name: book-service
+
+      rabbitmq:
+        addresses: rabbitmq
+        username: guest
+        password: guest
+
+      datasource:
+        url: jdbc:h2:mem:bookdb
+        username: sa
+        password:
+
+      h2:
+        console:
+          enabled: true
+      jpa:
+        hibernate:
+          ddl-auto: update
+
+    logging:
+      level:
+        com:
+          jdum:
+            booking: INFO
+
+    client:
+      prices:
+        service: prices-service
+        requests:
+          get: /get

@@ -1,0 +1,16 @@
+spec:
+  template:
+    spec:
+      containers:
+      - env:
+        - name: KUBERNETES_NAMESPACE
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8060
+            scheme: HTTP
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8060
+            scheme: HTTP

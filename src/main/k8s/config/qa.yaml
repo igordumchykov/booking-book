@@ -1,0 +1,45 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: book-service
+  namespace: qa
+data:
+  application.yaml: |-
+
+    server:
+      port: 8060
+
+    spring:
+      application:
+        name: book-service
+
+      rabbitmq:
+        addresses: rabbitmq
+        username: guest
+        password: guest
+
+      datasource:
+        url: jdbc:mysql://localhost:3306/booking_qa_db
+        username: booking_qa_1
+        password: ENC(e4cSO2JGHlh6L9Q30BbIO4kAOsK/MBJI)
+        platform: qa
+
+      jpa:
+        hibernate:
+          ddl-auto: update
+
+    jasypt:
+      encryptor:
+        password: salt
+
+    logging:
+      level:
+        com:
+          jdum:
+            booking: INFO
+
+    client:
+      prices:
+        service: prices-service
+        requests:
+          get: /get

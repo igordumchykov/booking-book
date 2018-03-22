@@ -1,0 +1,5 @@
+client:
+  prices:
+    service: prices-service
+    requests:
+      get: /get
